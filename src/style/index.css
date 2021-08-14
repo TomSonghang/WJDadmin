@@ -1,0 +1,329 @@
+.bigBox,
+#app .wrapper,
+#app .sideBar .el-menu {
+  width: 100%;
+  height: 100%;
+}
+#app .wrapper {
+  position: relative;
+  background-color: #f0f3f4;
+}
+#app .wrapper .wrapper_con {
+  height: calc(100% - 50px);
+  width: 100%;
+  padding-top: 50px;
+}
+#app .pageMain {
+  margin-left: 200px;
+  transition: all 0.3s;
+  height: 100%;
+}
+#app .pageMain > div {
+  padding: 36px 30px;
+  background: #f0f3f4;
+}
+#app .noPadding {
+  padding: 0 !important;
+}
+#app .sideBar {
+  width: 200px;
+  height: calc(100% - 50px);
+  background-color: #3a3f51;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  transition: width 0.3s;
+  z-index: 999;
+}
+#app .sideBar .el-scrollbar {
+  height: 100%;
+}
+#app .sideBar .el-scrollbar .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+}
+#app .sideBar .el-menu {
+  border: none;
+}
+.header {
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 999;
+}
+.header_l {
+  width: 200px;
+  height: 100%;
+  float: left;
+  background-color: #3a3f51;
+  box-sizing: border-box;
+  border-bottom: 1px solid #454b61;
+  transition: width 0.3s;
+  overflow: hidden;
+}
+.header_r {
+  height: 100%;
+  margin-left: 200px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+.logoLink {
+  color: #ffffff !important;
+  font-size: 15px;
+  margin-left: 18px;
+  display: inline-block;
+  font-weight: bold;
+  height: 100%;
+  line-height: 50px;
+}
+.logoLink img {
+  height: 28px;
+  vertical-align: middle;
+  margin-right: 8px;
+  position: relative;
+  top: -3px;
+}
+.header_d1 {
+  float: left;
+  height: 100%;
+  margin-left: 20px;
+}
+.header_d1 .sidecoll {
+  float: left;
+  margin-top: 16px;
+}
+.header_d1 .bread {
+  float: left;
+  margin: 18px 0 0 20px;
+}
+.headr_d2 {
+  float: right;
+  height: 100%;
+}
+.headr_d2 .userDrop {
+  height: 50px;
+}
+.headr_d2 .userDrop .userDrop_text {
+  margin-right: 8px;
+}
+.headr_d2 .userDrop .userDrop_text i {
+  margin-left: 2px;
+}
+.headr_d2 .userDrop img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.headr_d2 .userDd .el-dropdown-menu__item {
+  padding: 0 12px;
+}
+.headr_d2 .headrUl {
+  height: 100%;
+}
+.headr_d2 .headrUl li {
+  float: left;
+  height: 100%;
+  line-height: 50px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.headr_d2 .headrUl li .iconFont {
+  font-size: 18px;
+  height: 50px;
+  vertical-align: initial;
+  line-height: 50px;
+}
+.headr_d2 .headrUl li .el-badge__content.is-fixed.is-dot {
+  right: 9px;
+  top: 16px;
+}
+.headr_d2 .headrUl li:hover {
+  background-color: #f6f8f8;
+}
+.headr_d2 .headrUl li:last-child {
+  padding: 0 20px 0 10px;
+}
+.el-dropdown-menu__item i {
+  font-size: 16px;
+}
+.el-dropdown-menu__item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.notificatBar {
+  position: fixed;
+  height: calc(100% - 50px);
+  bottom: 0;
+  right: 0;
+  width: 360px;
+  box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  z-index: 990;
+}
+#app .closeBar .sideBar {
+  width: 64px !important;
+}
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-menu-item [class^='el-icon-'],
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-submenu > .el-submenu__title [class^='el-icon-'] {
+  margin: 0;
+  vertical-align: middle;
+  width: 24px;
+  text-align: center;
+}
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-menu-item span,
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-submenu > .el-submenu__title span {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  display: inline-block;
+}
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-menu-item .el-submenu__icon-arrow,
+#app .closeBar .sideBar .el-menu--collapse > .sideItem .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+  display: none;
+}
+#app .closeBar .header_l {
+  width: 64px !important;
+  overflow: hidden;
+}
+#app .closeBar .header_r,
+#app .closeBar .pageMain {
+  margin-left: 64px;
+}
+.fade-page-enter-active,
+.fade-page-leave-active {
+  transition: all 0.3s;
+}
+.fade-page-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-page-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+ul,
+li,
+p {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  color: #606266;
+}
+a:hover {
+  text-decoration: none;
+  color: #409eff;
+}
+#app {
+  height: 100vh;
+}
+.point {
+  cursor: pointer;
+}
+.companyColor {
+  color: #13b5b1;
+}
+.companyBtn {
+  background: #13b5b1;
+  border: 1px solid #81f5f3;
+}
+.mtop {
+  margin-top: 30px;
+}
+.fontBold {
+  font-weight: bold;
+}
+.mright20 {
+  margin-right: 20px;
+}
+.wid300 {
+  width: 300px !important;
+}
+.btnStyle1 {
+  padding: 11px 20px !important;
+}
+.header i[class^='el-icon'] {
+  color: #606266;
+}
+#app .clearFixed:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.loginCon .el-input__inner {
+  background: #fff;
+  height: 50px;
+  outline: none;
+  color: #606266;
+  border: none;
+}
+.loginCon .el-form-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.marginLeft {
+  margin-left: 64px !important;
+}
+.pTitle {
+  font-size: 14px;
+  color: #666;
+  padding: 10px 0;
+}
+.pTitle code {
+  background-color: #f9fafc;
+  padding: 0 4px;
+  border: 1px solid #eaeefb;
+  border-radius: 4px;
+}
+.pTitle span {
+  font-size: 12px;
+}
+.pTitle i {
+  margin-right: 5px;
+  color: #ffc107;
+  font-size: 18px;
+}
+.el-notification .el-icon-s-opportunity {
+  color: #ffc107;
+  font-size: 22px;
+  margin-top: 2px;
+}
+.el-table th {
+  display: table-cell !important;
+}
+/*去掉input type='number'的默认上下点击按钮*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+/**全局自定义指定 按钮权限控制*/
+.permission-disable {
+  position: relative;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  border: none;
+  background-image: none;
+}
+.permission-disable::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  z-index: 9;
+  background: rgba(255, 255, 255, 0.5);
+}

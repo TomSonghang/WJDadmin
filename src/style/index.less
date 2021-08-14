@@ -1,0 +1,131 @@
+@import 'variable';
+@import 'layout';
+@import 'transition';
+
+ul,li,p{
+  list-style: none;
+  margin:0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  color: #606266;
+  &:hover {
+    text-decoration: none;
+    color: #409eff;
+  }
+}
+
+#app{
+    height: 100vh;
+}
+.point{
+  cursor: pointer;
+}
+.companyColor{
+  color:@bg-green;
+}
+.companyBtn{
+  background: @bg-green;
+  border:1px solid @borderColor;
+}
+
+.mtop{
+    margin-top:@px30
+}
+.fontBold{
+    font-weight: bold;
+}
+.mright20{
+    margin-right: @px20;
+}
+.wid300 {
+    width: 300px !important;
+  }
+  .btnStyle1 {
+    padding: 11px 20px !important;
+  }
+  .header i[class^='el-icon'] {
+    color: @text-color;
+  }
+  #app .clearFixed:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  .loginCon .el-input__inner {
+    // background: rgba(0, 0, 0, 0.1);
+    background: #fff;
+    height: 50px;
+    outline: none;
+    color: @text-color;
+    border: none;
+  }
+  .loginCon .el-form-item {
+    // border: 1px solid hsla(0, 0%, 100%, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .marginLeft {
+    margin-left: 64px !important;
+  }
+  .pTitle {
+    font-size: 14px;
+    color: #666;
+    padding: 10px 0;
+    code {
+      background-color: #f9fafc;
+      padding: 0 4px;
+      border: 1px solid #eaeefb;
+      border-radius: 4px;
+    }
+    span {
+      font-size: 12px;
+    }
+    i {
+      margin-right: 5px;
+      color: #ffc107;
+      font-size: 18px;
+    }
+  }
+  .el-notification {
+    .el-icon-s-opportunity {
+      color: #ffc107;
+      font-size: 22px;
+      margin-top: 2px;
+    }
+  }
+  .el-table th {
+  display: table-cell !important;
+}
+
+/*去掉input type='number'的默认上下点击按钮*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin            : 0;
+}
+/**全局自定义指定 按钮权限控制*/
+
+.permission-disable {
+  position        : relative;
+  cursor          : not-allowed !important;
+  pointer-events  : none; // 阻止元素成为鼠标事件
+  border          : none;
+  background-image: none;
+
+  &::after {
+    content   : '';
+    position  : absolute;
+    bottom    : 0;
+    left      : 0px;
+    right     : 0px;
+    height    : 100%;
+    z-index   : 9;
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
