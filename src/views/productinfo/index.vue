@@ -15,13 +15,21 @@
         <el-table-column prop="pImages" align="center" label="产品图片" width="120">
           <template slot-scope="scope">
             <el-image @click.stop="handleClickItem" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages" v-if='scope.row.pImages'>
+             
             </el-image>
+           
           </template>
         </el-table-column>
-        <el-table-column prop="pImages" align="center" label="产品视频" width="120">
+        <el-table-column prop="coverUrl" align="center" label="产品视频" width="120">
           <template slot-scope="scope">
-            <el-image @click.stop="handleClickVideo" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages" v-if='scope.row.pImages'>
+            
+              <div class='videoWrap'  v-if='scope.row.coverUrl' @click.stop="handleClickVideo(scope.row.videoId)">
+                <el-image  fit='cover' :src="scope.row.coverUrl" style="width: 100px; height: 100px"  >
             </el-image>
+               <div  class="videoPlay">
+                 <i class="el-icon-video-play"></i>
+               </div>
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="nickName" align="center" label="用户名">
@@ -112,7 +120,17 @@
     </el-dialog>
     <recode-dialog :CodeTable="CodeTable" @close="closeRecode" :diaIsShowTable="diaIsShowTable" :totalCode="totalCode" :arrayData="arrayData" @changePage="changePage"></recode-dialog>
     <!--表格弹窗-->
-
+    <el-dialog title="视频播放" :visible.sync="dialogVideo" width='600px' @close='closeVideo' center>
+        <video
+          ref="myVideo"
+          :src="videoSrc"
+          controls="controls"
+          autoplay
+          oncontextmenu="return false"
+          controlslist="nodownload"
+          class="video-box"
+        ></video>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -165,6 +183,8 @@ export default {
 
       tableData: [], //总反馈表
       //CodeTable: [], //弹窗记录表
+      videoSrc:"" ,  //视频播放链接
+      dialogVideo:false
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -253,6 +273,11 @@ export default {
     },
     handleClickVideo(e){   //点击视频
     console.log(e);
+    this.videoSrc = e;
+    this.dialogVideo =true;
+    },
+    closeVideo(){   //关闭视频
+    this.dialogVideo =false;
     },
     changeTab() {
       //确认修改标记
@@ -368,5 +393,27 @@ export default {
 .searchBtn {
   background: #13b5b1;
   border: 1px solid #0c9c9a;
+}
+.video-box{
+  width: 520px;
+  height: auto;
+  margin:0 auto;
+  display: block;
+ 
+}
+.videoWrap{
+  position:relative;
+}
+.videoPlay{
+  position:absolute;
+  width:50px;
+  height:50px;
+  color:#eee;
+  z-index:100;
+  top:50%;
+  left:50%;
+  font-size:50px;
+  margin-left:-25px;
+  margin-top:-28px;
 }
 </style>
