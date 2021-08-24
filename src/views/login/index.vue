@@ -63,7 +63,7 @@
         <el-button
           type="primary"
           class="loginBtn"
-          @click="loginYz('loginForm')"
+          @click.enter="loginYz('loginForm')"
         >登录</el-button>
           </el-form>
     </div>
