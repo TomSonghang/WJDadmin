@@ -249,9 +249,9 @@ export default {
   beforeRouteEnter(to, form, next) {
     next(vm => {
       console.log(to)
-      debugger
+ 
       if (to && to.name === "Orderinfo-index" && to.query.userId) {
-        debugger
+    
         //产品信息
         vm.currentPage = 1;//不然会出现搜不到数据的情况
         vm.sch_seller = to.query.userId;
@@ -316,7 +316,7 @@ export default {
 
     test() {
       let target = this.$refs.target
-      debugger
+     
       target.setAttribute('href', window.location.origin + '/orderinfo/index')
       target.click()
     },      

@@ -10,7 +10,7 @@ export const hasPermission = () => {
     bind(el, binding) {
       let disable = true;
       console.log(store.getters);
-      debugger
+ 
       if (
         store.getters.roles.length &&
         store.getters.roles.includes(binding.value)

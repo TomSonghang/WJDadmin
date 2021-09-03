@@ -190,10 +190,10 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
        console.log(to)
-      debugger
+
      
       if (to && to.name === "Productinfo-index" && (to.query.userId || to.query.productId)) {
-        debugger
+   
         //产品信息
         vm.currentPage = 1;//不然会出现搜不到数据的情况
         vm.sch_product= to.query.productId || '';
@@ -403,6 +403,7 @@ export default {
 }
 .videoWrap{
   position:relative;
+  cursor: pointer;
 }
 .videoPlay{
   position:absolute;

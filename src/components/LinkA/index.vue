@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     jump() {
-      debugger;
+   
       if (this.selfPage) {
         this.$listeners.changeId(this.userId);
       }

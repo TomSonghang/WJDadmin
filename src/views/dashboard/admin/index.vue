@@ -161,7 +161,6 @@ export default {
     //   let str = `${encodeURI(c_name)}=${encodeURI(
     //     value
     //   )}; expires=${oDate.toGMTString()}; HttpOnly;`;
-    //   debugger;
 
     //   document.cookie = str;
     // },
@@ -199,7 +198,7 @@ export default {
           this.todayAddNum[3].yesterday = baseData.YesterdayIncome;
           this.todayAddNum[4].yesterday = baseData.YesterdayActive;
           this.todayAddNum[5].yesterday = baseData.YesterdayFeedBack;
-          debugger
+      
           //昨日新增
 
           //本月

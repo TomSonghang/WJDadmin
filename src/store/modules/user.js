@@ -91,6 +91,12 @@ const actions = {
                   case "Feedback-index": //反馈建议
                     roles.push("Feedback");
                     break;
+                  case "Collect-index": //购物侧
+                    roles.push("Collect");
+                    break;
+                  case "Cart-index": //收藏
+                    roles.push("Cart");
+                    break;
                   case "PageUser": //管理账号
                     roles.push("Permission");
                     break;

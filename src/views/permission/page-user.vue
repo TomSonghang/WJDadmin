@@ -113,7 +113,7 @@ export default {
             "Feedback",
             "Feedback-index",
             "Permission",
-            "PageUser"
+            "PageUser",
           ]
         }
       ],
@@ -181,7 +181,7 @@ export default {
         toUserId: ""
       };
       GetUserInfo(data).then(res => {
-        debugger;
+     
         let list = res.data.privilegeTreeList; //获取该用户的权限
         this.treeData = this.getTree(list).treeData; //生成树结构
         this.diaIsShow = true;
@@ -205,7 +205,7 @@ export default {
       GetUserInfo(data).then(res => {
         console.log(res);
         let trueData = [];
-        debugger;
+     
         let list = res.data.privilegeTreeList; //获取该用户的权限
         this.treeData = this.getTree(list).treeData; //生成树结构
         trueData = this.getTree(list).trueData; //勾选的树结构
@@ -399,7 +399,7 @@ export default {
       //递归函数转换数据
       let arrBox = []; //树形结构
       let trueBox = ['001S']; //选中结构  首页是默认被选中的
-      debugger
+  
       for (let item of list) {
         if (item.isHas == 1) {
           trueBox.push(item.privilegeNo);
@@ -409,7 +409,7 @@ export default {
           name: item.privilegeNo,
           disabled:item.privilegeNo =='001S'?true:false   //首页默认是禁止选择且被选中
         };
-          debugger
+       
         if (item.subList.length > 0) {
           data.children = this.getTree(item.subList);
         }

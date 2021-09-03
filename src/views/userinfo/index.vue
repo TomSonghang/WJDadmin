@@ -662,7 +662,7 @@ export default {
       };
       GetBlacklistDispose(data).then(res => {
         if (res.status === Code.SUCCESS_CODE) {
-          debugger
+        
           this.CodeTable = res.data.list;
           this.totalCode = res.data.count
         } else {
@@ -825,7 +825,7 @@ export default {
 
     changeId(res){   //link-a孙级调用的
         console.log('res:'+res)
-        debugger
+     
         this.userID = res ;//置空
         this.currentPage = 1;//不然会出现搜不到数据的情况 
         this.sch_status = -1;
@@ -858,7 +858,7 @@ export default {
          * @return {function}
          */
         compare (propertyName, sort) {
-          debugger
+     
             return function (obj1, obj2) {
                 var value1 = obj1[propertyName]
                 var value2 = obj2[propertyName]

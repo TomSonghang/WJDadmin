@@ -79,100 +79,144 @@ export const currencyRoutes = [
 ];
 
 export const asyncRoutes = [
-  {
-    path: "/userinfo",
-    name: "Userinfo",
-    component: Layout,
-    redirect: "/userinfo/index",
-    children: [
-      {
-        path: "index",
-        name: "Userinfo-index",
-        component: () => import("@/views/userinfo"),
-        meta: { title: "用户信息", icon: "el-icon-user", noCache:true}
-      },
-    ],
-  },
-  {
-    path: "/productinfo",
-    name: "Productinfo",
-    component: Layout,
-    redirect: "/productinfo/index",
-    children: [
-      {
-        path: "index",
-        name: "Productinfo-index",
-        component: () => import("@/views/productinfo"),
-        meta: { title: "产品信息", icon: "el-icon-takeaway-box", noCache: true},
-      },
-    ],
-  },
-  {
-    path: "/orderinfo",
-    name: "Orderinfo",
-    component: Layout,
-    redirect: "/orderinfo/index",
-    children: [
-      {
-        path: "index",
-        name: "Orderinfo-index",
-        component: () => import("@/views/orderinfo/index"),
-        meta: { title: "订单信息", icon: "el-icon-receiving", noCache: true},
-      },
-      {
-        path: "orderDetails",
-        name: "Order-details",
-        component: () => import("@/views/orderinfo/details"),
-        meta: { title: "订单信息  /  订单详情" },
-        hidden: true,
-      },
-    ],
-  },
-  {
-    path: "/feedback",
-    name: "Feedback",
-    component: Layout,
-    redirect: "/feedback/index",
-    children: [
-      {
-        path: "index",
-        name: "Feedback-index",
-        component: () => import("@/views/feedback"),
-        meta: { title: "反馈建议", icon: "el-icon-question" },
-      },
-    ],
-  },
-  {
-    path: "/permission",
-    name: "Permission",
-    component: Layout,
-    redirect: "/permission/page-user",
-    //  meta: {
-    //    title: "权限许可",
-    //    icon: "el-icon-lock",
-    //  },
-    children: [
-      {
-        path: "page-user",
-        name: "PageUser",
-        component: () => import("@/views/permission/page-user"),
-        meta: {
-          title: "管理账号",
-          icon: "el-icon-user",
-        },
-      },
-      //  {
-      //    path: "roles",
-      //    name: "Roles",
-      //    component: () => import("@/views/permission/roles"),
-      //    meta: {
-      //      title: "角色管理",
-      //      icon: "el-icon-user",
-      //    },
-      //  },
-    ],
-  },
-];
+         {
+           path: "/userinfo",
+           name: "Userinfo",
+           component: Layout,
+           redirect: "/userinfo/index",
+           children: [
+             {
+               path: "index",
+               name: "Userinfo-index",
+               component: () => import("@/views/userinfo"),
+               meta: { title: "用户信息", icon: "el-icon-user", noCache: true },
+             },
+           ],
+         },
+         {
+           path: "/productinfo",
+           name: "Productinfo",
+           component: Layout,
+           redirect: "/productinfo/index",
+           children: [
+             {
+               path: "index",
+               name: "Productinfo-index",
+               component: () => import("@/views/productinfo"),
+               meta: {
+                 title: "产品信息",
+                 icon: "el-icon-takeaway-box",
+                 noCache: true,
+               },
+             },
+           ],
+         },
+         {
+           path: "/orderinfo",
+           name: "Orderinfo",
+           component: Layout,
+           redirect: "/orderinfo/index",
+           children: [
+             {
+               path: "index",
+               name: "Orderinfo-index",
+               component: () => import("@/views/orderinfo/index"),
+               meta: {
+                 title: "订单信息",
+                 icon: "el-icon-receiving",
+                 noCache: true,
+               },
+             },
+             {
+               path: "orderDetails",
+               name: "Order-details",
+               component: () => import("@/views/orderinfo/details"),
+               meta: { title: "订单信息  /  订单详情" },
+               hidden: true,
+             },
+           ],
+         },
+         {
+           path: "/collect-page",
+           name: "Collect",
+           component: Layout,
+           redirect: "/collect-page/index",
+           children: [
+             {
+               path: "index",
+               name: "Collect-index",
+               component: () => import("@/views/collect-page"),
+               meta: {
+                 title: "收藏列表",
+                 icon: "el-icon-star-off",
+                 noCache: true,
+               },
+             },
+           ],
+         },
+         {
+           path: "/cart-page",
+           name: "Cart",
+           component: Layout,
+           redirect: "/cart-page/index",
+           children: [
+             {
+               path: "index",
+               name: "Cart-index",
+               component: () => import("@/views/cart-page"),
+               meta: {
+                 title: "购物车列表",
+                 icon: "el-icon-shopping-cart-full",
+                 noCache: true,
+               },
+             },
+           ],
+         },
+         {
+           path: "/feedback",
+           name: "Feedback",
+           component: Layout,
+           redirect: "/feedback/index",
+           children: [
+             {
+               path: "index",
+               name: "Feedback-index",
+               component: () => import("@/views/feedback"),
+               meta: { title: "反馈建议", icon: "el-icon-question" },
+             },
+           ],
+         },
+         {
+           path: "/permission",
+           name: "Permission",
+           component: Layout,
+           redirect: "/permission/page-user",
+           //  meta: {
+           //    title: "权限许可",
+           //    icon: "el-icon-lock",
+           //  },
+           children: [
+             {
+               path: "page-user",
+               name: "PageUser",
+               component: () => import("@/views/permission/page-user"),
+               meta: {
+                 title: "管理账号",
+                 icon: "el-icon-user",
+               },
+             },
+             //  {
+             //    path: "roles",
+             //    name: "Roles",
+             //    component: () => import("@/views/permission/roles"),
+             //    meta: {
+             //      title: "角色管理",
+             //      icon: "el-icon-user",
+             //    },
+             //  },
+           ],
+         },
+       ];
 const creatRouter = () => {
   return new VueRouter({
     routes: currencyRoutes,
