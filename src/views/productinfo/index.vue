@@ -1,4 +1,4 @@
-<template> 
+<template>
   <div>
     <el-card>
       <div class="searchDiv">
@@ -14,27 +14,28 @@
         <el-table-column prop="productId" align="center" label="产品ID" width="70"></el-table-column>
         <el-table-column prop="pImages" align="center" label="产品图片" width="120">
           <template slot-scope="scope">
-            <el-image @click.stop="handleClickItem" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages" v-if='scope.row.pImages'>
-             
+            <el-image @click.stop="handleClickItem" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages"
+              v-if='scope.row.pImages'>
+
             </el-image>
-           
+
           </template>
         </el-table-column>
         <el-table-column prop="coverUrl" align="center" label="产品视频" width="120">
           <template slot-scope="scope">
-            
-              <div class='videoWrap'  v-if='scope.row.coverUrl' @click.stop="handleClickVideo(scope.row.videoId)">
-                <el-image  fit='cover' :src="scope.row.coverUrl" style="width: 100px; height: 100px"  >
-            </el-image>
-               <div  class="videoPlay">
-                 <i class="el-icon-video-play"></i>
-               </div>
+
+            <div class='videoWrap' v-if='scope.row.coverUrl' @click.stop="handleClickVideo(scope.row.videoId)">
+              <el-image fit='cover' :src="scope.row.coverUrl" style="width: 100px; height: 100px">
+              </el-image>
+              <div class="videoPlay">
+                <i class="el-icon-video-play"></i>
+              </div>
             </div>
           </template>
         </el-table-column>
         <el-table-column prop="nickName" align="center" label="用户名">
           <template slot-scope="scope">
-             <link-a url='/userinfo/index' :userId='scope.row.userId' :val='scope.row.nickName' />
+            <link-a url='/userinfo/index' :userId='scope.row.userId' :val='scope.row.nickName' />
           </template>
         </el-table-column>
         <el-table-column prop="productKey" align="center" label="产品名称" width="180">
@@ -49,7 +50,7 @@
             <span>{{scope.row.pinkage | Pinkage}}</span>
           </template>
         </el-table-column>
-        
+
         <el-table-column prop="price" align="center" label="价格" width="80"></el-table-column>
         <el-table-column prop="specificationList" align="center" label="规格描述 | 价格" width="160">
           <template slot-scope="scope">
@@ -65,13 +66,13 @@
         <el-table-column prop="collectCount" align="center" label="被收藏数" width="80"></el-table-column>
         <el-table-column prop="resellCount" align="center" label="转卖数" width="70"></el-table-column>
         <el-table-column prop="saleCount" align="center" label="销售件数" width="80"></el-table-column>
-        
+
         <el-table-column prop="releaseTime" align="center" label="发布时间" width="110"></el-table-column>
         <el-table-column prop="modiDateTime" align="center" label="更新时间" width="110"></el-table-column>
 
         <el-table-column prop="fromNickName" align="center" label="产品来源">
           <template slot-scope="scope">
-            <span v-if="scope.row.fromNickName" >
+            <span v-if="scope.row.fromNickName">
               <link-a url='/userinfo/index' :userId='scope.row.fromUserId' :val='scope.row.fromNickName' />
             </span>
             <span v-else></span>
@@ -83,7 +84,7 @@
           </template>
         </el-table-column> -->
         <el-table-column prop="isPutaway" align="center" label="状态" width="70">
-           <template slot-scope="scope">
+          <template slot-scope="scope">
             <span>{{scope.row.isPutaway | Putaway}}</span>
           </template>
         </el-table-column>
@@ -95,10 +96,12 @@
         <el-table-column align="center" label="操作" fixed="right">
           <template slot-scope="scope">
             <el-button type="warning" size="small" @click="handleStatu(scope.row.productId, scope.$index)">处理</el-button>
+            <el-button type="success" size="small" @click="delProduct(scope.row.productId, scope.$index)" style="margin-top:10px;margin-left:0;background:#13b5b1;">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination background layout="total, sizes, prev, pager, next" :page-sizes="pageSizes" :page-size="pageSize" :current-page="currentPage" :total="total" class="fyDiv" @size-change="handleSize" @current-change="handlePage">
+      <el-pagination background layout="total, sizes, prev, pager, next" :page-sizes="pageSizes" :page-size="pageSize" :current-page="currentPage"
+        :total="total" class="fyDiv" @size-change="handleSize" @current-change="handlePage">
       </el-pagination>
     </el-card>
     <el-dialog title="标记处理" :visible.sync="diaIsShow" class="diaForm">
@@ -118,28 +121,26 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <recode-dialog :CodeTable="CodeTable" @close="closeRecode" :diaIsShowTable="diaIsShowTable" :totalCode="totalCode" :arrayData="arrayData" @changePage="changePage"></recode-dialog>
+    <recode-dialog :CodeTable="CodeTable" @close="closeRecode" :diaIsShowTable="diaIsShowTable" :totalCode="totalCode" :arrayData="arrayData"
+      @changePage="changePage"></recode-dialog>
     <!--表格弹窗-->
     <el-dialog title="视频播放" :visible.sync="dialogVideo" width='600px' @close='closeVideo' center>
-        <video
-          ref="myVideo"
-          :src="videoSrc"
-          controls="controls"
-          autoplay
-          oncontextmenu="return false"
-          controlslist="nodownload"
-          class="video-box"
-        ></video>
+      <video ref="myVideo" :src="videoSrc" controls="controls" autoplay oncontextmenu="return false" controlslist="nodownload"
+        class="video-box"></video>
     </el-dialog>
   </div>
 </template>
 <script>
 import { Message } from "element-ui"; // 引用element-ui的加载和消息提示组件
-import { GetProductList, GetProductDispose } from "@/api/productinfo";
+import {
+  GetProductList,
+  GetProductDispose,
+  DelProduct,
+} from "@/api/productinfo";
 import { BackstageDispose } from "@/api/userinfo";
 import RecodeDialog from "@/components/recodeDialog/index";
 import Code from "@/api/statusCode";
-import LinkA from '@/components/LinkA/index'
+import LinkA from "@/components/LinkA/index";
 import closeMask from "@/mixins/maskCloseImg";
 import recode from "@/mixins/recode";
 import enterPage from "@/mixins/enterPage";
@@ -183,23 +184,26 @@ export default {
 
       tableData: [], //总反馈表
       //CodeTable: [], //弹窗记录表
-      videoSrc:"" ,  //视频播放链接
-      dialogVideo:false
+      videoSrc: "", //视频播放链接
+      dialogVideo: false,
     };
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
-       console.log(to)
+      console.log(to);
 
-     
-      if (to && to.name === "Productinfo-index" && (to.query.userId || to.query.productId)) {
-   
+      if (
+        to &&
+        to.name === "Productinfo-index" &&
+        (to.query.userId || to.query.productId)
+      ) {
         //产品信息
-        vm.currentPage = 1;//不然会出现搜不到数据的情况
-        vm.sch_product= to.query.productId || '';
-        vm.sch_key='';
-        vm.sch_user = to.query.userId || '' ;
-        if (vm.$route.query.statu) {   //是否上架
+        vm.currentPage = 1; //不然会出现搜不到数据的情况
+        vm.sch_product = to.query.productId || "";
+        vm.sch_key = "";
+        vm.sch_user = to.query.userId || "";
+        if (vm.$route.query.statu) {
+          //是否上架
           vm.sch_status = Number(to.query.statu) || -1;
         }
         vm._GetProductList();
@@ -233,7 +237,7 @@ export default {
   mixins: [closeMask, recode, enterPage],
   components: {
     RecodeDialog,
-    LinkA
+    LinkA,
   },
   filters: {
     changeStatu(val) {
@@ -248,6 +252,39 @@ export default {
     },
   },
   methods: {
+    delProduct(id,index) {
+      //删除产品
+      let data = {
+        idList: id,
+      };
+      this.$confirm("此操作将删除该产品, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          DelProduct(data).then(res => {
+            if (res.status === Code.SUCCESS_CODE) {
+              this.$message({
+                type: "success",
+                message: "删除成功",
+              });
+              this.tableData.splice(index,1)
+            } else {
+              this.$message({
+                type: "error",
+                message: res.message,
+              });
+            }
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
     _GetProductList() {
       let data = {
         pageNo: this.currentPage,
@@ -260,7 +297,7 @@ export default {
       GetProductList(data).then(res => {
         if (res.status === Code.SUCCESS_CODE) {
           console.log(res);
-         // res.data.list[1].pImages.push('https://djt-bucket-public-dev.oss-cn-shenzhen.aliyuncs.com/Shop/ProductVideo/Attachment/10000031/20210811/202108111453054040.mp4')
+          // res.data.list[1].pImages.push('https://djt-bucket-public-dev.oss-cn-shenzhen.aliyuncs.com/Shop/ProductVideo/Attachment/10000031/20210811/202108111453054040.mp4')
           this.tableData = res.data.list;
           this.total = res.data.count;
         } else {
@@ -271,13 +308,15 @@ export default {
         }
       });
     },
-    handleClickVideo(e){   //点击视频
-    console.log(e);
-    this.videoSrc = e;
-    this.dialogVideo =true;
+    handleClickVideo(e) {
+      //点击视频
+      console.log(e);
+      this.videoSrc = e;
+      this.dialogVideo = true;
     },
-    closeVideo(){   //关闭视频
-    this.dialogVideo =false;
+    closeVideo() {
+      //关闭视频
+      this.dialogVideo = false;
     },
     changeTab() {
       //确认修改标记
@@ -291,11 +330,11 @@ export default {
           status: this.formData.statusValue,
           operationReason: this.formData.mark,
         };
-        BackstageDispose(data).then(res => { 
+        BackstageDispose(data).then(res => {
           if (res.status === Code.SUCCESS_CODE) {
-            this.tableData[this.index].disposeCount =     //处理记录数量
+            this.tableData[this.index].disposeCount = //处理记录数量
               this.tableData[this.index].disposeCount + 1;
-              this.tableData[this.index].isPutaway =    this.formData.statusValue ;
+            this.tableData[this.index].isPutaway = this.formData.statusValue;
             this.$message({
               type: "success",
               message: "处理成功",
@@ -394,27 +433,26 @@ export default {
   background: #13b5b1;
   border: 1px solid #0c9c9a;
 }
-.video-box{
+.video-box {
   width: 520px;
   height: auto;
-  margin:0 auto;
+  margin: 0 auto;
   display: block;
- 
 }
-.videoWrap{
-  position:relative;
+.videoWrap {
+  position: relative;
   cursor: pointer;
 }
-.videoPlay{
-  position:absolute;
-  width:50px;
-  height:50px;
-  color:#eee;
-  z-index:100;
-  top:50%;
-  left:50%;
-  font-size:50px;
-  margin-left:-25px;
-  margin-top:-28px;
+.videoPlay {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  color: #eee;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  margin-left: -25px;
+  margin-top: -28px;
 }
 </style>

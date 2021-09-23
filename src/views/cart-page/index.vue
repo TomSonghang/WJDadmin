@@ -23,7 +23,7 @@
                 <el-table-column prop="imageList" align="center" label="产品图片" width="120">
                     <template slot-scope="scope">
                         <el-image @click.stop="handleClickItem" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages"
-                            v-if='scope.row.pImages'>
+                            v-if='scope.row.pImages.length>0'>
                         </el-image>
                     </template>
                 </el-table-column>

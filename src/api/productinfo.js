@@ -11,3 +11,9 @@ export function GetProductDispose(data) {
   let url = "/api/ApiManage/GetProductDispose";
   return $axios.get(url, data);
 }
+
+export function DelProduct(data) {
+  //删除产品
+  let url = "/api/ApiManage/DelProduct";
+  return $axios.post(url, data);
+}
