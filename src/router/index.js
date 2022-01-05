@@ -173,6 +173,81 @@ export const asyncRoutes = [
            ],
          },
          {
+           path: "/after-sale",
+           name: "After",
+           component: Layout,
+           redirect: "/after-sale/index",
+           children: [
+             {
+               path: "index",
+               name: "After-index",
+               component: () => import("@/views/after-sale/index"),
+               meta: {
+                 title: "退换/售后",
+                 icon: "el-icon-chat-line-round",
+                 noCache: true,
+               },
+             },
+             {
+               path: "afterDetails",
+               name: "After-details",
+               component: () => import("@/views/after-sale/afterDetails"),
+               meta: {
+                 title: "详情",
+                 noCache: true,
+               },
+               hidden: true,
+             },
+           ],
+         },
+         {
+           path: "/intervene",
+           name: "Intervene",
+           component: Layout,
+           redirect: "/intervene/index",
+           children: [
+             {
+               path: "index",
+               name: "Intervene-index",
+               component: () => import("@/views/intervene"),
+               meta: {
+                 title: "平台介入",
+                 icon: "el-icon-phone-outline",
+                 noCache: true,
+               },
+             },
+           ],
+         },
+
+         {
+           path: "/settleAccounts",
+           name: "SettleAccounts",
+           component: Layout,
+           redirect: "/settleAccounts/index",
+           children: [
+             {
+               path: "index",
+               name: "SettleAccounts-index",
+               component: () => import("@/views/settleAccounts"),
+               meta: {
+                 title: "结算管理",
+                 icon: "el-icon-bank-card",
+                 noCache: true,
+               },
+             },
+             {
+               path: "details",
+               name: "Settle-details",
+               component: () => import("@/views/settleAccounts/details"),
+               meta: {
+                 title: "结算详情",
+                 noCache: true,
+               },
+               hidden: true,
+             },
+           ],
+         },
+         {
            path: "/feedback",
            name: "Feedback",
            component: Layout,

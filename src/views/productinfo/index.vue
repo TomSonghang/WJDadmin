@@ -14,8 +14,8 @@
         <el-table-column prop="productId" align="center" label="产品ID" width="70"></el-table-column>
         <el-table-column prop="pImages" align="center" label="产品图片" width="120">
           <template slot-scope="scope">
-            <el-image @click.stop="handleClickItem" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages[0]" :preview-src-list="scope.row.pImages"
-              v-if='scope.row.pImages'>
+            <el-image @click.stop="handleClickItem(scope.row.productId)" fit='cover' style="width: 100px; height: 100px" :src="scope.row.pImages"
+              :preview-src-list="productViewImg" v-if='scope.row.pImages'>
 
             </el-image>
 
@@ -136,6 +136,7 @@ import {
   GetProductList,
   GetProductDispose,
   DelProduct,
+  GetProductAttachmentByProductId,
 } from "@/api/productinfo";
 import { BackstageDispose } from "@/api/userinfo";
 import RecodeDialog from "@/components/recodeDialog/index";
@@ -186,12 +187,12 @@ export default {
       //CodeTable: [], //弹窗记录表
       videoSrc: "", //视频播放链接
       dialogVideo: false,
+      productViewImg: [],
     };
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
       console.log(to);
-
       if (
         to &&
         to.name === "Productinfo-index" &&
@@ -252,7 +253,7 @@ export default {
     },
   },
   methods: {
-    delProduct(id,index) {
+    delProduct(id, index) {
       //删除产品
       let data = {
         idList: id,
@@ -269,7 +270,7 @@ export default {
                 type: "success",
                 message: "删除成功",
               });
-              this.tableData.splice(index,1)
+              this.tableData.splice(index, 1);
             } else {
               this.$message({
                 type: "error",
@@ -305,6 +306,22 @@ export default {
             type: "error",
             message: res.message,
           });
+        }
+      });
+    },
+    handleClickItem(e) {
+      this.productViewImg = [];
+      //点击了产品图片
+      let data = {
+        productId: e,
+      };
+      GetProductAttachmentByProductId(data).then(res => {
+        if (res.status === Code.SUCCESS_CODE) {
+          let arr = [];
+          res.data.forEach(item => {
+            arr.push(item.pImages);
+          });
+          this.productViewImg = arr;
         }
       });
     },

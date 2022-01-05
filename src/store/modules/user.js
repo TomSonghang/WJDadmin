@@ -6,7 +6,7 @@ const state = {
   token: localStorage.getItem("token") ? localStorage.getItem("token") : "", //认证凭证
   userName: "",
   userId: "",
-  roles: []
+  roles: [],
 };
 
 const mutations = {
@@ -15,7 +15,6 @@ const mutations = {
     localStorage.setItem("token", val);
   },
   DEL_TOKEN(state) {
-  
     state.token = "";
     state.userName = "";
     state.userId = "";
@@ -30,7 +29,7 @@ const mutations = {
   },
   SET_USERID(state, payload) {
     state.userId = payload;
-  }
+  },
 };
 
 const actions = {
@@ -38,7 +37,7 @@ const actions = {
     //登录
     return new Promise((resolve, reject) => {
       GetAccess_token(formdatas)
-        .then(res => {
+        .then((res) => {
           if (res.status === Code.SUCCESS_CODE) {
             Message.success("登陆成功");
             commit("SET_TOKEN", res.data.access_token); //登录成功,修改全局TOKEN状态
@@ -47,7 +46,7 @@ const actions = {
           }
           resolve(res);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
@@ -58,14 +57,14 @@ const actions = {
     router.push({
       path: "/login",
       query: {
-        redirect: "/"
-      }
+        redirect: "/",
+      },
     });
   },
   _getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       GetSysMenu()
-        .then(res => {
+        .then((res) => {
           if (res.status === Code.SUCCESS_CODE) {
             const { userName, userId } = res.data.userInfo;
 
@@ -73,9 +72,13 @@ const actions = {
 
             // console.log(`menu:${rolseList.toString()}`);
             let roles = [];
+
             if (rolseList.length > 0) {
-              rolseList.forEach(item => {
-                switch (item.pageName) {
+              rolseList.forEach((item) => {
+          
+                switch (
+                  item.pageName //后端返回的项目需要匹配自定义名称
+                ) {
                   case "Dashbord":
                     roles.push("Home"); //首页
                     break;
@@ -96,6 +99,15 @@ const actions = {
                     break;
                   case "Cart-index": //收藏
                     roles.push("Cart");
+                    break;
+                  case "After-index": //退换/售后
+                    roles.push("After");
+                    break;
+                  case "Intervene-index": //平台介入
+                    roles.push("Intervene");
+                    break;
+                  case "SettleAccounts-index": //结算管理
+                    roles.push("SettleAccounts");
                     break;
                   case "PageUser": //管理账号
                     roles.push("Permission");
@@ -119,16 +131,16 @@ const actions = {
           //resolve(res.data);
           resolve(state.roles);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

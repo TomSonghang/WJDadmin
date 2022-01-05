@@ -23,3 +23,9 @@ export function GetShopping(data) {
   let url = "/api/ApiManage/GetShopping";
   return $axios.get(url, data);
 }
+
+export function LockOrder(data) {
+  //订单锁定
+  let url = "/api/ApiManage/LockOrder";
+  return $axios.post(url, data);
+}

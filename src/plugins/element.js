@@ -1,4 +1,5 @@
 import Vue from "vue";
+
 import {
   Button,
   Row,
@@ -39,7 +40,10 @@ import {
   Upload,
   Carousel,
   CarouselItem,
-  Drawer
+  // Drawer,
+  Loading,
+  Steps,
+  Step,
 } from "element-ui";
 
 Message.install = () => {
@@ -91,4 +95,7 @@ Vue.use(Tree);
 Vue.use(Upload);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
-Vue.use(Drawer);
+// Vue.use(Drawer);
+Vue.use(Loading);
+Vue.use(Steps);
+Vue.use(Step);

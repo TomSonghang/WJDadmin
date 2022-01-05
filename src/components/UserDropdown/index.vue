@@ -6,11 +6,12 @@
           {{ userName }}
           <i class="el-icon-caret-bottom"></i>
         </span>
-        <img src="@/assets/user/user01.jpg" alt="头像" />
+        <img src="@/assets/user/user01.jpg" alt="头像" style="display:inline-block" />
       </div>
       <el-dropdown-menu solt="dropdown">
         <el-dropdown-item>
-          <router-link to="/"><i class="el-icon-s-home"></i>首页</router-link>
+          <router-link to="/">
+            <i class="el-icon-s-home"></i>首页</router-link>
         </el-dropdown-item>
         <!-- <el-dropdown-item>
           <router-link to="/personal"
@@ -18,7 +19,8 @@
           >
         </el-dropdown-item> -->
         <el-dropdown-item divided>
-          <a @click="_loginOut()"><i class="el-icon-switch-button"></i>登出</a>
+          <a @click="_loginOut()">
+            <i class="el-icon-switch-button"></i>登出</a>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -29,12 +31,12 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["userName"])
+    ...mapGetters(["userName"]),
   },
   methods: {
     _loginOut() {
       this.$store.dispatch("user/loginOut");
-    }
-  }
+    },
+  },
 };
 </script>

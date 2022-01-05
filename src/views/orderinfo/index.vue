@@ -2,12 +2,13 @@
   <div>
     <el-card>
       <div class="searchDiv">
-        <el-date-picker v-model="times" format="yyyy-MM-dd " type="daterange" align="right" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+        <el-date-picker v-model="times" format="yyyy-MM-dd " type="daterange" align="right" range-separator="至" start-placeholder="开始日期"
+          end-placeholder="结束日期"></el-date-picker>
         <el-input type="text" placeholder="订单编号" clearable class="width1 mar20" v-model="sch_orderSn"></el-input>
         <el-select v-model="sch_status" class="width1" placeholde="请选择状态">
           <el-option v-for="item in options" :label="item.label" :value="item.value" :key="item.value"></el-option>
         </el-select>
-        <el-input type="text"  placeholder="卖家ID" clearable class="width1" v-model="sch_seller"></el-input>
+        <el-input type="text" placeholder="卖家ID" clearable class="width1" v-model="sch_seller"></el-input>
         <el-input type="text" placeholder="买家ID" clearable class="width1" v-model="sch_buyer"></el-input>
 
         <el-button type="primary" icon="el-icon-search" @click="searchTab()" class="searchBtn">查询</el-button>
@@ -23,7 +24,7 @@
         <el-table-column prop="productAmount" align="center" label="产品金额"></el-table-column>
         <el-table-column prop="sellerNickName" align="center" label="卖家">
           <template slot-scope="scope">
-             <link-a url='/userinfo/index' :userId='scope.row.sellerUserId' :val='scope.row.sellerNickName' />
+            <link-a url='/userinfo/index' :userId='scope.row.sellerUserId' :val='scope.row.sellerNickName' />
           </template>
         </el-table-column>
         <el-table-column prop="buyerNickName" align="center" label="买家">
@@ -36,6 +37,11 @@
             <span class="companyColor point" @click="handleStatu(scope.row.orderId)">{{ scope.row.status | changeStatu }}</span>
           </template>
         </el-table-column>
+        <el-table-column prop="isLock" align="center" label="是否锁定">
+          <template slot-scope="scope">
+            <span :class="scope.row.isLock?'orange':'blue'" @click="_LockOrder(scope.row.orderId,scope.row.isLock,scope.$index)">{{scope.row.isLock ?'已锁定':'未锁定'}}</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button type="warning" size="small" @click="skipDetails(scope.row.orderId)">查看</el-button>
@@ -43,15 +49,18 @@
         </el-table-column>
       </el-table>
 
-      <el-pagination background layout="total, sizes, prev, pager, next" :page-sizes="pageSizes" :page-size="pageSize" :current-page="currentPage" :total="total" class="fyDiv" @size-change="handleSize" @current-change="handlePage">
+      <el-pagination background layout="total, sizes, prev, pager, next" :page-sizes="pageSizes" :page-size="pageSize" :current-page="currentPage"
+        :total="total" class="fyDiv" @size-change="handleSize" @current-change="handlePage">
       </el-pagination>
     </el-card>
 
-    <recode-dialog title="订单状态" :CodeTable="CodeTableStatu" @close="closeRecode" :diaIsShowTable="diaIsShow" :totalCode="totalCode" :arrayData="arrayDataStatu" @changePage="changePageStatu"></recode-dialog>
+    <recode-dialog title="订单状态" :CodeTable="CodeTableStatu" @close="closeRecode" :diaIsShowTable="diaIsShow" :totalCode="totalCode"
+      :arrayData="arrayDataStatu" @changePage="changePageStatu"></recode-dialog>
 
-    <recode-dialog title="产品信息" :CodeTable="CodeTable" @close="closeRecode" :diaIsShowTable="diaIsShowTable" :totalCode="totalCode" :arrayData="arrayData" @changePage="changePage"></recode-dialog>
+    <recode-dialog title="产品信息" :CodeTable="CodeTable" @close="closeRecode" :diaIsShowTable="diaIsShowTable" :totalCode="totalCode"
+      :arrayData="arrayData" @changePage="changePage"></recode-dialog>
 
-    <el-dialog title="订单详情" :visible.sync="drawerDetails" >
+    <el-dialog title="订单详情" :visible.sync="drawerDetails">
       <div class="drawer_wrap">
         <el-card class="status_top">
           <div class="tp_one">
@@ -65,13 +74,13 @@
               <el-image :src='detailsData.sellerHeadPath' style="width:40px;height:40px;"></el-image>
             </div>
             <div class="name">{{detailsData.sellerNickName}}</div>
-            <router-link tag="a"  :to="`/userinfo/index?userId=${detailsData.sellerUserId}`" class="aTag"></router-link>
+            <router-link tag="a" :to="`/userinfo/index?userId=${detailsData.sellerUserId}`" class="aTag"></router-link>
           </div>
 
           <div v-for='(item,index) in detailsData.shoppingList' :key='index' class='productBox'>
             <div class="productImg">
               <el-image :src='item.mainProductImg' fit='cover' style="width:100px;height:100px;"></el-image>
-              <router-link tag="a"  :to="`/productinfo/index?id=${item.productId}`" class="aTag"></router-link>
+              <router-link tag="a" :to="`/productinfo/index?id=${item.productId}`" class="aTag"></router-link>
             </div>
             <div class="middle_main">
               <ul>
@@ -101,7 +110,9 @@
                 <i class="el-icon-truck"></i>
               </div>
               <div>
-                <p class="contant">{{detailsData.mcontactPerson}} {{detailsData.mcontactPhone}} <span class='addressSpan'>(发货地)</span></p>
+                <p class="contant">{{detailsData.mcontactPerson}} {{detailsData.mcontactPhone}}
+                  <span class='addressSpan'>(发货地)</span>
+                </p>
                 <div class="address">{{detailsData.mprovince}} {{detailsData.mcity}} {{detailsData.marea}} {{detailsData.mdetailedAddress}}</div>
               </div>
             </div>
@@ -113,7 +124,9 @@
                 <i class="el-icon-location"></i>
               </div>
               <div>
-                <p class="contant">{{detailsData.rcontactPerson}} {{detailsData.rcontactPhone}} <span class='addressSpan'>(收货地)</span></p>
+                <p class="contant">{{detailsData.rcontactPerson}} {{detailsData.rcontactPhone}}
+                  <span class='addressSpan'>(收货地)</span>
+                </p>
                 <div class="address">{{detailsData.rprovince}} {{detailsData.rcity}} {{detailsData.rarea}} {{detailsData.rdetailedAddress}}</div>
               </div>
             </div>
@@ -133,7 +146,8 @@
     </el-dialog>
   </div>
 </template>
-<script>/**
+<script>
+/**
   
  */
 //import { Message } from "element-ui"; // 引用element-ui的加载和消息提示组件
@@ -142,10 +156,11 @@ import {
   GetOrderDetails,
   GetOrderLog,
   GetShopping,
+  LockOrder,
 } from "@/api/orderinfo";
 import RecodeDialog from "@/components/recodeDialog/index";
 import Code from "@/api/statusCode";
-import LinkA from '@/components/LinkA/index'
+import LinkA from "@/components/LinkA/index";
 import recode from "@/mixins/recode";
 import enterPage from "@/mixins/enterPage";
 export default {
@@ -248,17 +263,19 @@ export default {
   mixins: [recode, enterPage],
   beforeRouteEnter(to, form, next) {
     next(vm => {
-      console.log(to)
- 
-      if (to && to.name === "Orderinfo-index" && to.query.userId) {
-    
+      console.log(to);
+      if (
+        to &&
+        to.name === "Orderinfo-index" &&
+        (to.query.userId || to.query.orderSn)
+      ) {
         //产品信息
-        vm.currentPage = 1;//不然会出现搜不到数据的情况
-        vm.sch_seller = to.query.userId;
-        vm.sch_status = Number(to.query.statu) || '';
+        vm.currentPage = 1; //不然会出现搜不到数据的情况
+        vm.sch_seller = to.query.userId || "";
+        vm.sch_status = Number(to.query.statu) || "";
         /*置空*/
         vm.times = "";
-        vm.sch_orderSn = "";
+        vm.sch_orderSn = to.query.orderSn || "";
         vm.sch_buyer = "";
         vm._GetOrderList();
       }
@@ -292,7 +309,7 @@ export default {
   // },
   components: {
     RecodeDialog,
-    LinkA
+    LinkA,
   },
   filters: {
     changeStatu(val) {
@@ -313,13 +330,12 @@ export default {
     },
   },
   methods: {
-
     test() {
-      let target = this.$refs.target
-     
-      target.setAttribute('href', window.location.origin + '/orderinfo/index')
-      target.click()
-    },      
+      let target = this.$refs.target;
+
+      target.setAttribute("href", window.location.origin + "/orderinfo/index");
+      target.click();
+    },
     _GetOrderList() {
       let data = {
         pageNo: this.currentPage,
@@ -336,6 +352,28 @@ export default {
         if (res.status === Code.SUCCESS_CODE) {
           this.tableData = res.data.list;
           this.total = res.data.count;
+        } else {
+          this.$message({
+            type: "error",
+            message: res.message,
+          });
+        }
+      });
+    },
+    _LockOrder(e, s, index) {
+      let that = this;
+      //订单是否锁定
+      let data = {
+        orderId: e,
+        isLock: s ? 0 : 1,
+      };
+      LockOrder(data).then(res => {
+        if (res.status === Code.SUCCESS_CODE) {
+          that.tableData[index].isLock = that.tableData[index].isLock ? 0 : 1;
+          this.$message({
+            type: "success",
+            message: "操作成功",
+          });
         } else {
           this.$message({
             type: "error",
@@ -456,16 +494,24 @@ export default {
 };
 </script>
 <style>
+.orange {
+  color: #e8541e;
+  cursor: pointer;
+}
+.blue {
+  color: #13b5b1;
+  cursor: pointer;
+}
 :focus {
   outline: 0;
 }
 </style>
 <style lang="less" scoped>
-.addressSpan{
-font-size:15px;
-color:#999;
-padding-left:10px;
-font-weight:normal;
+.addressSpan {
+  font-size: 15px;
+  color: #999;
+  padding-left: 10px;
+  font-weight: normal;
 }
 .diaForm {
   .el-input {
@@ -600,7 +646,7 @@ font-weight:normal;
   margin-left: 10px;
   font-weight: bold;
 }
-.aTag{
+.aTag {
   width: 100%;
   height: 100%;
   opacity: 0;

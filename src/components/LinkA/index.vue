@@ -1,22 +1,23 @@
 <template>
-  <router-link
-    :to="{ path: url, query: { userId, productId, statu }}"
-    class="companyColor"
-    @click.native='jump'
-  >
+  <router-link :to="{ path: url, query: { userId, productId, statu,orderSn }}" class="companyColor" @click.native='jump'>
     {{val}}
-    </router-link>
+  </router-link>
 </template>
 <script>
 export default {
   props: {
     url: String,
     productId: {
-      type: String,
+      type: [String, Number],
+      default: "",
+    },
+    orderSn: {
+      //订单编号
+      type: [String, Number],
       default: "",
     },
     userId: {
-      type: String,
+      type: [String, Number],
       default: "",
     },
     statu: {
@@ -35,7 +36,6 @@ export default {
   },
   methods: {
     jump() {
-   
       if (this.selfPage) {
         this.$listeners.changeId(this.userId);
       }

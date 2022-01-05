@@ -17,3 +17,9 @@ export function DelProduct(data) {
   let url = "/api/ApiManage/DelProduct";
   return $axios.post(url, data);
 }
+
+export function GetProductAttachmentByProductId(data) {
+  //获取产品图片
+  let url = "/api/ApiManage/GetProductAttachmentByProductId";
+  return $axios.get(url, data);
+}
