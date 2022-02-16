@@ -95,6 +95,7 @@
 import { GetAfterSaleList } from "@/api/afterSale";
 import Code from "@/api/statusCode";
 import LinkA from "@/components/LinkA/index";
+
 export default {
   name: "AfterSale",
   data: function() {
@@ -274,7 +275,8 @@ export default {
       });
     },
     handleSize(e) {
-      this.currentPage = e;
+      this.pageNo = e;
+      console.log(e);
       this._GetAfterSaleList();
       //pageSize 改变时会触发
     },
