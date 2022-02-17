@@ -161,6 +161,13 @@ export default {
   mounted() {
     this._GetSettleAccounts();
   },
+  beforeRouteEnter(to,from,next){
+    next(vm=>{
+      if (to && to.name == "SettleAccounts-index" && to.query.statu) {
+        vm.orderStatus = to.query.statu; //跳转过来给未处理状态
+      }
+    })
+  },
   components: {
     LinkA,
   },

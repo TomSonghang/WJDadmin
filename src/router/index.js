@@ -257,7 +257,11 @@ export const asyncRoutes = [
                path: "index",
                name: "Feedback-index",
                component: () => import("@/views/feedback"),
-               meta: { title: "反馈建议", icon: "el-icon-question" },
+               meta: {
+                 title: "反馈建议",
+                 icon: "el-icon-question",
+                 noCache: true,
+               },
              },
            ],
          },

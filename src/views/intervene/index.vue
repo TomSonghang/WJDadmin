@@ -350,6 +350,14 @@ export default {
       }
     },
   },
+  beforeRouteEnter(to, from, next) {
+ 
+    next(vm => {
+      if (to && to.name == "Intervene-index" && to.query.statu) {
+        vm.platfromInStatus = Number(to.query.statu); //跳转过来给未处理状态
+      }
+    });
+  },
   methods: {
     _GetIntervenelist() {
       let that = this;
@@ -466,7 +474,7 @@ export default {
       //   }
       // });
     },
-   formTrue() {
+    formTrue() {
       //去处理确认按钮
       var that = this;
       that.dialogFormVisible1 = false;
@@ -499,9 +507,7 @@ export default {
       });
     },
     imgsuccess(e) {},
-    imgremove(e, t) {
-    
-    },
+    imgremove(e, t) {},
     rowClass() {
       return "background: #E7F7F6; color: #333; font-weight: normal;text-align:center";
     },

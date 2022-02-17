@@ -4,18 +4,20 @@
     <!-- <p class="titleTop">今日新增</p> -->
     <el-row class="infoCrads">
       <el-col :span="4" v-for="(item, index) in todayAddNum" :key="index">
-        <div class="cardItem">
-          <div class="cardItem_txt">
-            <div>
-              <count-to class="cardItem_p0" :class="item.color" :startVal="item.startVal" :endVal="item.vistors" :duration="2000"></count-to>
-              <span class="zuori"> / {{ item.yesterday }}</span>
+        <router-link :to='{path:item.url,query:{statu:item.statu}}'>
+          <div class="cardItem" :to="{path:item.url,query:{statu:item.statu}}">
+            <div class="cardItem_txt">
+              <div>
+                <count-to class="cardItem_p0" :class="item.color" :startVal="item.startVal" :endVal="item.vistors" :duration="2000"></count-to>
+                <span class="zuori"> / {{ item.yesterday }}</span>
+              </div>
+              <p class="cardItem_p1">{{ item.text }}</p>
             </div>
-            <p class="cardItem_p1">{{ item.text }}</p>
+            <div class="cardItem_icon">
+              <i class="color-green1" :class="[item.icon, item.color]"></i>
+            </div>
           </div>
-          <div class="cardItem_icon">
-            <i class="color-green1" :class="[item.icon, item.color]"></i>
-          </div>
-        </div>
+        </router-link>
       </el-col>
     </el-row>
     <line-charts class="lCharts" :lineChartData="lineChartData"></line-charts>
@@ -107,6 +109,7 @@ export default {
           text: "今/昨日新增用户数",
           icon: "el-icon-user",
           color: "color-green1",
+          url: "/userinfo/index",
         },
         {
           startVal: 0,
@@ -115,6 +118,7 @@ export default {
           text: "今/昨日新增产品数",
           icon: "el-icon-present",
           color: "color-blue",
+          url: "/productinfo/index",
         },
         {
           startVal: 0,
@@ -123,6 +127,7 @@ export default {
           text: "今/昨日订单数",
           icon: "el-icon-document",
           color: "color-red",
+          url: "/orderinfo/index",
         },
         {
           startVal: 0,
@@ -147,6 +152,8 @@ export default {
           text: "待处理反馈建议",
           icon: "el-icon-mic",
           color: "color-blue",
+          url: "/feedback/index",
+          statu: 1,
         },
         {
           //新增
@@ -156,6 +163,8 @@ export default {
           text: "进行中的售后",
           icon: "el-icon-chat-line-round",
           color: "color-blue",
+          url: "/after-sale/index",
+          statu: 1,
         },
         {
           startVal: 0,
@@ -164,6 +173,8 @@ export default {
           text: "待处理平台介入",
           icon: "el-icon-phone-outline",
           color: "color-red",
+          url: "/intervene/index",
+          statu: 1,
         },
         {
           startVal: 0,
@@ -172,6 +183,8 @@ export default {
           text: "待处理交易结算",
           icon: "el-icon-bank-card",
           color: "color-orange",
+          url: "/settleAccounts/index",
+          statu: 1,
         },
       ],
     };
@@ -316,6 +329,7 @@ export default {
       height: 108px;
       background: #fff;
       margin-bottom: 20px;
+      cursor: pointer;
     }
   }
 }

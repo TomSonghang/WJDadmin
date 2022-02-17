@@ -134,6 +134,15 @@ export default {
       }
     },
   },
+  beforeRouteEnter(to, from, next) {
+    //路由进来时
+    next(vm => {
+  
+      if (to && to.name == "Feedback-index" && to.query.statu) {
+        vm.sch_status = Number(to.query.statu); //跳转过来给未处理状态
+      }
+    });
+  },
   methods: {
     _GetFeedBack() {
       let data = {
