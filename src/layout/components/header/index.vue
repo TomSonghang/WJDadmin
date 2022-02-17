@@ -2,8 +2,7 @@
   <div class="header">
     <div class="header_l">
       <a href="javascript:;" class="logoLink">
-        <img src="./logo.png" alt="logo" />
-        点金台网络后台
+        <img src="./logo.png" alt="logo"  style="display: inline-block;" /> 点金台网络后台
       </a>
     </div>
     <div class="header_r">
@@ -41,12 +40,12 @@ export default {
     SlideCollapse,
     BreadCrumb,
     UserDropdown,
-    FullScreen
+    FullScreen,
   },
   methods: {
     toggleMsgShow() {
       this.$store.commit("app/SET_MSGISOPEN");
-    }
-  }
+    },
+  },
 };
 </script>

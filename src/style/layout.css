@@ -71,6 +71,7 @@
   transition: all 0.3s;
 }
 .logoLink {
+  width : 100%;
   color: #ffffff !important;
   font-size: 15px;
   margin-left: 18px;

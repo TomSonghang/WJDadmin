@@ -40,14 +40,14 @@ export default {
     return {
       formData: {
         name: "",
-        sex: 1
+        sex: 1,
       },
       fieldMap: {
         name: {
           name: "name",
           label: "名称",
           type: "text",
-          placeholder: "请输入名称"
+          placeholder: "请输入名称",
         },
         sex: {
           name: "sex",
@@ -57,15 +57,15 @@ export default {
             list: [
               {
                 label: "男",
-                value: 0
+                value: 0,
               },
               {
                 label: "女",
-                value: 1
-              }
-            ]
-          }
-        }
+                value: 1,
+              },
+            ],
+          },
+        },
       },
       isShow: false,
       lineChartData: {
@@ -74,7 +74,7 @@ export default {
         orderData: [23, 75, 98, 124, 57, 56, 98],
         incomeData: [1120, 699, 245, 745, 635, 698, 855],
         activeData: [258, 865, 635, 247, 587, 1221, 354],
-        xname: []
+        xname: [],
       },
       tableData: [
         {
@@ -82,22 +82,22 @@ export default {
           user: 0,
           product: 652,
           order: 415,
-          income: 5242
+          income: 5242,
         },
         {
           title: "今年新增",
           user: 0,
           product: 1652,
           order: 5415,
-          income: 15242
+          income: 15242,
         },
         {
           title: "所有新增",
           user: 0,
           product: 4652,
           order: 15415,
-          income: 75242
-        }
+          income: 75242,
+        },
       ],
       todayAddNum: [
         {
@@ -106,7 +106,7 @@ export default {
           yesterday: 0,
           text: "今/昨日新增用户数",
           icon: "el-icon-user",
-          color: "color-green1"
+          color: "color-green1",
         },
         {
           startVal: 0,
@@ -114,7 +114,7 @@ export default {
           yesterday: 0,
           text: "今/昨日新增产品数",
           icon: "el-icon-present",
-          color: "color-blue"
+          color: "color-blue",
         },
         {
           startVal: 0,
@@ -122,7 +122,7 @@ export default {
           yesterday: 0,
           text: "今/昨日订单数",
           icon: "el-icon-document",
-          color: "color-red"
+          color: "color-red",
         },
         {
           startVal: 0,
@@ -130,7 +130,7 @@ export default {
           yesterday: 0,
           text: "今/昨日交易金额",
           icon: "el-icon-bank-card",
-          color: "color-green2"
+          color: "color-green2",
         },
         {
           startVal: 0,
@@ -138,7 +138,7 @@ export default {
           yesterday: 0,
           text: "今/昨日活跃用户数",
           icon: "el-icon-user",
-          color: "color-orange"
+          color: "color-orange",
         },
         {
           startVal: 0,
@@ -146,9 +146,34 @@ export default {
           yesterday: 0,
           text: "待处理反馈建议",
           icon: "el-icon-mic",
-          color: "color-red"
-        }
-      ]
+          color: "color-blue",
+        },
+        {
+          //新增
+          startVal: 0,
+          vistors: 0,
+          yesterday: 0,
+          text: "进行中的售后",
+          icon: "el-icon-chat-line-round",
+          color: "color-blue",
+        },
+        {
+          startVal: 0,
+          vistors: 0,
+          yesterday: 0,
+          text: "待处理平台介入",
+          icon: "el-icon-phone-outline",
+          color: "color-red",
+        },
+        {
+          startVal: 0,
+          vistors: 0,
+          yesterday: 0,
+          text: "待处理交易结算",
+          icon: "el-icon-bank-card",
+          color: "color-orange",
+        },
+      ],
     };
   },
   mounted() {
@@ -191,6 +216,10 @@ export default {
           this.todayAddNum[3].vistors = baseData.DayIncome;
           this.todayAddNum[4].vistors = baseData.DayActive;
           this.todayAddNum[5].vistors = baseData.DayFeedBack;
+
+          this.todayAddNum[6].vistors = baseData.DayAfterSaleOrder;
+          this.todayAddNum[7].vistors = baseData.DayAfterPlatformDispose;
+          this.todayAddNum[8].vistors = baseData.DayAfterSettlementBills;
           //今日新增
           this.todayAddNum[0].yesterday = baseData.YesterdayUser;
           this.todayAddNum[1].yesterday = baseData.YesterdayProduct;
@@ -198,7 +227,11 @@ export default {
           this.todayAddNum[3].yesterday = baseData.YesterdayIncome;
           this.todayAddNum[4].yesterday = baseData.YesterdayActive;
           this.todayAddNum[5].yesterday = baseData.YesterdayFeedBack;
-      
+
+          this.todayAddNum[6].yesterday = baseData.YesterdayAfterSaleOrder;
+          this.todayAddNum[7].yesterday = baseData.YesterdayPlatformDispose;
+          this.todayAddNum[8].yesterday = baseData.YesterdaySettlementBills;
+
           //昨日新增
 
           //本月
@@ -228,18 +261,18 @@ export default {
         } else {
           this.$message({
             type: "error",
-            message: res.message
+            message: res.message,
           });
         }
       });
-    }
+    },
   },
   components: {
     CountTo,
     LineCharts,
-    TableShow
+    TableShow,
     // DynamicForm,
-  }
+  },
 };
 </script>
 <style scoped lang="less">
@@ -282,6 +315,7 @@ export default {
     .cardItem {
       height: 108px;
       background: #fff;
+      margin-bottom: 20px;
     }
   }
 }
